@@ -1,0 +1,42 @@
+<div class="card shadow-sm" *ngIf="usuario">
+  <div class="card-header bg-primary text-white">
+    <h4 class="mb-0">
+      <i class="bi bi-person-circle"></i> Datos del Usuario
+    </h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- Imagen del usuario -->
+      <div class="col-md-3 text-center mb-3">
+        <img [src]="usuario.image" [alt]="usuario.firstName" class="img-fluid rounded-circle shadow" style="max-width: 150px;">
+      </div>
+      
+      <!-- Información principal -->
+      <div class="col-md-9">
+        <h3 class="mb-3">{{ usuario.firstName }} {{ usuario.lastName }}</h3>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong><i class="bi bi-person-badge"></i> Username:</strong> {{ usuario.username }}</p>
+            <p><strong><i class="bi bi-envelope"></i> Email:</strong> {{ usuario.email }}</p>
+            <p><strong><i class="bi bi-telephone"></i> Teléfono:</strong> {{ usuario.phone }}</p>
+            <p><strong><i class="bi bi-calendar"></i> Fecha de Nacimiento:</strong> {{ usuario.birthDate }}</p>
+            <p><strong><i class="bi bi-gender-ambiguous"></i> Género:</strong> {{ usuario.gender }}</p>
+          </div>
+          
+          <div class="col-md-6">
+            <p><strong><i class="bi bi-calculator"></i> Edad:</strong> {{ usuario.age }} años</p>
+            <p><strong><i class="bi bi-rulers"></i> Altura:</strong> {{ usuario.height }} cm</p>
+            <p><strong><i class="bi bi-speedometer"></i> Peso:</strong> {{ usuario.weight }} kg</p>
+            <p><strong><i class="bi bi-droplet"></i> Grupo Sanguíneo:</strong> {{ usuario.bloodGroup }}</p>
+            <p><strong><i class="bi bi-eye"></i> Color de Ojos:</strong> {{ usuario.eyeColor }}</p>
+          </div>
+        </div>
+        
+        <div class="mt-2">
+          <p><strong><i class="bi bi-brush"></i> Cabello:</strong> {{ usuario.hair.color }} - {{ usuario.hair.type }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
