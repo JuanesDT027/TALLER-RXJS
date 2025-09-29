@@ -1,9 +1,7 @@
 <div class="container mt-5">
   <!-- Título de la aplicacion -->
   <div class="text-center mb-4">
-    <h1 class="display-4">
-      <i class="bi bi-search"></i> {{ title }}
-    </h1>
+    <h1 class="display-4"><i class="bi bi-search"></i> {{ title }}</h1>
     <p class="lead text-muted">Busca usuarios por su nombre de usuario</p>
   </div>
 
@@ -16,18 +14,17 @@
             <span class="input-group-text">
               <i class="bi bi-person-search"></i>
             </span>
-            <input 
-              type="text" 
-              class="form-control form-control-lg" 
-              placeholder="Ingresa el username (ej: atuny0, hbingley1, etc.)" 
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Ingresa el username (ej: atuny0, hbingley1, etc.)"
               [(ngModel)]="txtUser"
-              (keyup.enter)="searchUser()">
+              (keyup.enter)="searchUser()"
+            />
           </div>
         </div>
         <div class="col-md-2">
-          <button 
-            class="btn btn-primary btn-lg w-100" 
-            (click)="searchUser()">
+          <button class="btn btn-primary btn-lg w-100" (click)="searchUser()">
             <i class="bi bi-search"></i> Buscar
           </button>
         </div>
@@ -36,17 +33,25 @@
   </div>
 
   <!-- Mensaje de error si el usuario no existe -->
-  <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="usuarioNoEncontrado">
+  <div
+    class="alert alert-warning alert-dismissible fade show"
+    role="alert"
+    *ngIf="usuarioNoEncontrado"
+  >
     <i class="bi bi-exclamation-triangle"></i>
-    <strong>Usuario no encontrado.</strong> Por favor verifica el nombre de usuario e intenta nuevamente.
-    <button type="button" class="btn-close" (click)="usuarioNoEncontrado = false"></button>
+    <strong>Usuario no encontrado.</strong> Por favor verifica el nombre de
+    usuario e intenta nuevamente.
+    <button
+      type="button"
+      class="btn-close"
+      (click)="usuarioNoEncontrado = false"
+    ></button>
   </div>
 
   <div *ngIf="usuario" class="mb-4">
     <app-user-data [usuario]="usuario"></app-user-data>
+    <app-posts-user *ngIf="usuario" [userId]="usuario.id"></app-posts-user>
   </div>
 
-  <div *ngIf="usuario" class="mb-4">
-   
-  </div>
+  <div *ngIf="usuario" class="mb-4"></div>
 </div>
