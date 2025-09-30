@@ -15,20 +15,21 @@
       <h5 class="card-title">{{ post.title }}</h5>
       <p class="card-text">{{ post.body }}</p>
 
-      <!-- ✅ Reacciones -->
-      <p class="text-muted">
+      <!-- Reacciones (ya normalizadas a número) -->
+      <p class="text-muted mb-2">
         <i class="bi bi-hand-thumbs-up"></i> {{ post.reactions }} reacciones
       </p>
 
-      <!-- ✅ Comentarios -->
+      <!-- Comentarios -->
       <div *ngIf="comments[post.id] && comments[post.id].length > 0">
-        <h6><i class="bi bi-chat-dots"></i> Comentarios:</h6>
+        <h6 class="mb-2"><i class="bi bi-chat-dots"></i> Comentarios:</h6>
         <ul class="list-group">
           <li *ngFor="let comment of comments[post.id]" class="list-group-item">
-            <strong>{{ comment.user.username }}:</strong> {{ comment.body }}
+            <strong>{{ comment.user?.username }}:</strong> {{ comment.body }}
           </li>
         </ul>
       </div>
+      <!-- Si no hay comentarios, opcionalmente no mostrar nada -->
     </div>
   </div>
 </div>
