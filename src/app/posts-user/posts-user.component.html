@@ -1,35 +1,53 @@
-<h4 class="mt-4"><i class="bi bi-chat-left-text"></i> Publicaciones</h4>
+<h4 class="mt-4 text-primary">
+  <i class="bi bi-chat-left-text"></i> Publicaciones
+</h4>
 
 <!-- Loader -->
-<div *ngIf="loading" class="alert alert-info">Cargando publicaciones...</div>
+<div *ngIf="loading" class="alert alert-info d-flex align-items-center">
+  <i class="bi bi-arrow-repeat me-2"></i> Cargando publicaciones...
+</div>
 
 <!-- Error -->
-<div *ngIf="error" class="alert alert-danger">
-  {{ error }}
+<div *ngIf="error" class="alert alert-danger d-flex align-items-center">
+  <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ error }}
 </div>
 
 <!-- Lista de publicaciones -->
-<div *ngIf="!loading && !error && posts.length > 0">
-  <div *ngFor="let post of posts" class="card my-3 shadow-sm">
-    <div class="card-body">
-      <h5 class="card-title">{{ post.title }}</h5>
-      <p class="card-text">{{ post.body }}</p>
+<div *ngIf="!loading && !error && posts.length > 0" class="row g-4">
+  <div *ngFor="let post of posts" class="col-12">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <!-- Título -->
+        <h5 class="card-title text-dark fw-bold">{{ post.title }}</h5>
+        <!-- Cuerpo -->
+        <p class="card-text">{{ post.body }}</p>
 
-      <!-- Reacciones (ya normalizadas a número) -->
-      <p class="text-muted mb-2">
-        <i class="bi bi-hand-thumbs-up"></i> {{ post.reactions }} reacciones
-      </p>
+        <!-- Reacciones -->
+        <p class="text-muted mb-3">
+          <i class="bi bi-hand-thumbs-up-fill text-success"></i>
+          <span class="fw-bold">{{ post.reactions }}</span> reacciones
+        </p>
 
-      <!-- Comentarios -->
-      <div *ngIf="comments[post.id] && comments[post.id].length > 0">
-        <h6 class="mb-2"><i class="bi bi-chat-dots"></i> Comentarios:</h6>
-        <ul class="list-group">
-          <li *ngFor="let comment of comments[post.id]" class="list-group-item">
-            <strong>{{ comment.user?.username }}:</strong> {{ comment.body }}
-          </li>
-        </ul>
+        <!-- Comentarios -->
+        <div *ngIf="comments[post.id] && comments[post.id].length > 0">
+          <h6 class="mb-2 text-secondary">
+            <i class="bi bi-chat-dots-fill"></i> Comentarios:
+          </h6>
+          <ul class="list-group list-group-flush">
+            <li
+              *ngFor="let comment of comments[post.id]"
+              class="list-group-item d-flex align-items-start"
+            >
+              <i class="bi bi-person-circle text-primary me-2 fs-5"></i>
+              <div>
+                <strong>{{ comment.user?.username }}</strong
+                ><br />
+                {{ comment.body }}
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <!-- Si no hay comentarios, opcionalmente no mostrar nada -->
     </div>
   </div>
 </div>
@@ -37,7 +55,8 @@
 <!-- Sin publicaciones -->
 <div
   *ngIf="!loading && !error && posts.length === 0"
-  class="alert alert-warning"
+  class="alert alert-warning d-flex align-items-center"
 >
-  Este usuario no tiene publicaciones.
+  <i class="bi bi-info-circle-fill me-2"></i> Este usuario no tiene
+  publicaciones.
 </div>
